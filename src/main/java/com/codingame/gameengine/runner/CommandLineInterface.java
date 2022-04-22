@@ -31,25 +31,18 @@ public class CommandLineInterface {
 
             CommandLine cmd = new DefaultParser().parse(options, args);
 
-            if (cmd.hasOption("h") || !cmd.hasOption("p1") || !cmd.hasOption("p2")) {
-                new HelpFormatter().printHelp( 
-                    "-p1 <player1 command line> -p2 <player2 command line> [-s -l <File output for logs> -d <seed>]", 
-                    options);
-                System.exit(0);
-            }
+            // if (cmd.hasOption("h") || !cmd.hasOption("p1") || !cmd.hasOption("p2")) {
+            //     new HelpFormatter().printHelp( 
+            //         "-p1 <player1 command line> -p2 <player2 command line> [-s -l <File output for logs> -d <seed>]", 
+            //         options);
+            //     System.exit(0);
+            // }
 
             // Launch Game
             MultiplayerGameRunner gameRunner = new MultiplayerGameRunner();
 
             //Choose league level
             gameRunner.setLeagueLevel(3);
-
-            //Add players
-            String cmd1 = cmd.getOptionValue("p1", "../../AgiArene/AgiAreneWeb/AgiAreneWeb/Contests/SpringChallenge2022/RandomActionsBot/bin/Debug/netcoreapp3.1/Bot.exe");
-            gameRunner.addAgent(cmd1, "Player1", null);
-            
-            String cmd2 = cmd.getOptionValue("p2", "../../AgiArene/AgiAreneWeb/AgiAreneWeb/Contests/SpringChallenge2022/RandomActionsBot/bin/Debug/netcoreapp3.1/Bot.exe");
-            gameRunner.addAgent(cmd2, "Player2", null);
 
             if (cmd.hasOption("d")) {
                 String[] parse = cmd.getOptionValue("d").split("=", 0);
